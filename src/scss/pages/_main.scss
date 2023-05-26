@@ -55,14 +55,16 @@
 }
 
 .intro {
-
+  background: linear-gradient(0deg, rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6));
   &__title {
     margin-bottom: 8rem;
   }
 
   &__content {
+    position: relative;
+    z-index: 9;
     max-width: 59rem;
-    padding: 17.5rem 0 11rem;
+    padding: 17.5rem 0 20rem;
   }
 
   &__arrows {
@@ -83,9 +85,6 @@
     display: flex;
   }
 
-  &__slide {
-    min-height: 70rem;
-  }
 
   &__image {
     position: absolute;
@@ -93,6 +92,16 @@
     overflow: hidden;
     height: 100%;
     width: 100%;
+
+    &:after {
+      background: linear-gradient(0deg, rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6));
+      position: absolute;
+      content: '';
+      top: 0;
+      right: 0;
+      bottom: 0;
+      width: 100%;
+  }
 
     img {
       position: absolute;
