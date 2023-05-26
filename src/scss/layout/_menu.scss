@@ -44,5 +44,11 @@
     align-items: center;
     font-size: 4rem;
     gap: 3rem;
+    visibility: hidden;
+  }
+}
+@include responsive(650px) {
+  .active .menu {
+    visibility: visible;
   }
 }
