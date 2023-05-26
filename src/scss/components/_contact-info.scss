@@ -1,0 +1,71 @@
+.contact-info {
+  display: flex;
+  justify-content: space-between;
+  font-size: 1.3rem;
+  line-height: 1.7rem;
+  color: $color-secondary;
+  flex-wrap: wrap;
+  gap: 1rem;
+
+  &__item {
+    position: relative;
+    padding-left: 3.7rem;
+
+    @include responsive(extra-small) {
+      flex: 1 0 48%;
+    }
+
+    &::before {
+      position: absolute;
+      left: 0;
+      top: 50%;
+      width: 2.2rem;
+      height: 1.7rem;
+      transform: translateY(-55%);
+      content: '';
+      background-repeat: no-repeat;
+      background-position: center;
+      background-size: contain;
+    }
+
+    &_clock::before {
+      background-image: url(../assets/images/clock.svg);
+    }
+
+    &_mark::before {
+      background-image: url(../assets/images/mark.svg);
+    }
+  }
+
+  &__link {
+    position: relative;
+    line-height: 1.8rem;
+    // для кликабельности иконки
+    &::before {
+      position: absolute;
+      left: -3.7rem;
+      top: 50%;
+      width: 2.2rem;
+      height: 1.7rem;
+      transform: translateY(-55%);
+      content: '';
+      background-repeat: no-repeat;
+      background-position: center;
+      background-size: contain;
+    }
+
+    &_phone::before {
+      background-image: url(../assets/images/phone.svg);
+    }
+
+    &_mail::before {
+      background-image: url(../assets/images/mail-small.svg);
+    }
+  }
+  @include responsive(650px) {
+    grid-column: 1 / -1;
+  }
+  @include responsive(extra-small) {
+    font-size: 2rem;
+  }
+}

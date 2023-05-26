@@ -2,18 +2,23 @@ const {src, dest, watch, parallel, series} = require('gulp');
 
 
 const scss = require('gulp-sass')(require('sass'));
+const sourcemaps = require('gulp-sourcemaps');
 const concat = require('gulp-concat');
 const uglify = require('gulp-uglify-es').default;
 const browserSync = require('browser-sync').create();
 const autoprefixer = require('gulp-autoprefixer');
 const clean = require('gulp-clean');
-const avif = require('gulp-avif');
 const webp = require('gulp-webp');
 const imagemin = require('gulp-imagemin');
 const newer = require('gulp-newer');
+const plumber = require('gulp-plumber');
 
 function scripts() {
-  return src('src/js/main.js')
+  const modules = [
+    'node_modules/swiper/swiper-bundle.js',
+    'src/js/main.js'
+  ];
+  return src(modules)
   .pipe(concat('main.min.js'))
   .pipe(uglify())
   .pipe(dest('src/js'))
@@ -21,45 +26,43 @@ function scripts() {
 }
 
 function styles() {
-  return src('src/scss/*.scss')
+  const modules = [
+    'src/scss/*.scss'
+  ];
+  return src(modules)
+  .pipe(plumber())
   .pipe(concat('main.min.css'))
   .pipe(autoprefixer({
     overrideBrowserslist: ['last 2 version']
   }))
+  .pipe(sourcemaps.init())
   .pipe(scss({outputStyle: 'compressed'}))
+  .pipe(sourcemaps.write('.'))
   .pipe(dest('src/css'))
   .pipe(browserSync.stream());
 }
 
-function imagesToAvif() {
-  return src(['src/assets/images/src/*.*', '!src/assets/images/src/*.svg'])
-    .pipe(newer('src/assets/images/dist'))
-    .pipe(avif({quality : 50}))
-    .pipe(dest('src/assets/images/dist'))
-}
 
-function imagesToWebp() {
+function images() {
   return src('src/assets/images/src/*.*')
-    .pipe(newer('src/assets/images/dist'))
+    .pipe(newer('src/assets/images/'))
     .pipe(webp())
-    .pipe(dest('src/assets/images/dist'))
-}
 
-function imagesMin() {
-  return src('src/assets/images/src/*.*')
-    .pipe(newer('src/assets/images/dist'))
+    .pipe(src('src/assets/images/src/*.*'))
+    .pipe(newer('src/assets/images/'))
     .pipe(imagemin())
-    .pipe(dest('src/assets/images/dist'))
+    .pipe(dest('src/assets/images/'))
 }
 
 function watching() {
-    browserSync.init({
+  browserSync.init({
       server: {
           baseDir: "src/"
       }
   });
   watch(['src/scss/**/*.scss'], styles)
   watch(['src/js/main.js'], scripts)
+  watch(['src/assets/images/src'], images)
   watch(['src/*.html']).on('change', browserSync.reload)
 }
 
@@ -69,6 +72,7 @@ function build() {
     'src/css/*.css',
     'src/js/*.js',
     'src/assets/**',
+    '!src/assets/images/src/**',
   ], {base : 'src'})
   .pipe(dest('dist'));
 }
@@ -82,7 +86,7 @@ exports.styles = styles;
 exports.scripts = scripts;
 exports.watching = watching;
 exports.build = build;
+exports.images = images;
 
 exports.build = series(cleanDist, build);
 exports.default = parallel(styles, scripts, watching);
-exports.images = parallel(imagesToAvif, imagesToWebp, imagesMin);

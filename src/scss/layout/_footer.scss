@@ -1,0 +1,17 @@
+.footer {
+  padding: 4.4rem 0 5rem;
+  font-weight: 300;
+  line-height: 1.9rem;
+  color: $color-secondary;
+
+  &__inner {
+    display: flex;
+    justify-content: space-between;
+  }
+  &__text {
+    margin: 0;
+    &_right {
+      text-align: right;
+    }
+  }
+}

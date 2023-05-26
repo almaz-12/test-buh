@@ -1,21 +1,25 @@
+@import url('https://fonts.googleapis.com/css2?family=Lato:wght@300&family=Merriweather:wght@700;900&display=swap');
+
 *, ::after, ::before {
-	margin: 0;
-	padding: 0;
 	box-sizing: border-box;
 }
   	
+html, body {
+	margin: 0;
+	padding: 0;
+}
 
 html {
 	font-size: 62.5%; // 10px
 
 	@include responsive(tablet) {
-		font-size: 56.25%;
-	}
-	@include responsive(small) {
 		font-size: 50%;
 	}
+	@include responsive(small) {
+		font-size: 45%;
+	}
 	@include responsive(extra-small) {
-		font-size: 40%;
+		font-size: 35%;
 	}
 	
 }
@@ -42,17 +46,23 @@ button {
 }
 
 body {
-	font-family: "Lato", sans-serif;
+	font-family: $font-main;
 	font-weight: 400;
-	color: $color-gray;
-	font-size: 1.6rem;
-	letter-spacing: .2rem;
-	background-color: white;
+	font-size: 1.4rem;
 }
 
+.visually-hidden { 
+  height: 1px; 
+  overflow: hidden;
+  width: 1px;
+  position: absolute;
+  clip: rect(1px, 1px, 1px, 1px);
+  clip-path: inset(50%); 
+  white-space: nowrap;
+}
 
 .container {
-	max-width: 1170px;
+	max-width: 1140px;
 	margin: 0 auto;
 	padding: 0 15px;
 }

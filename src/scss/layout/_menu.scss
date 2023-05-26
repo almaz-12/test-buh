@@ -1,0 +1,48 @@
+.navigation {
+  &.active {
+    width: 100%;
+    opacity: 1;
+  }
+  @include responsive(650px) {
+    position: fixed;
+    right: 0;
+    top: 0;
+    z-index: 100;
+    width: 0;
+    height: 100vh;
+    opacity: 0;
+    transition: all 0.3s cubic-bezier(0.68, -0.6, 0.32, 1.6);
+  }
+}
+
+.menu {
+  display: flex;
+  justify-content: space-between;
+
+  &__link:link,
+  &__link:visited {
+    font-weight: 700;
+    line-height: 1.7rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: #222222;
+    transition: all 0.3s;
+  }
+
+  &__link:hover,
+  &__link:focus {
+    color: $color-button;
+  }
+
+  @include responsive(650px) {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    width: 100%;
+    flex-direction: column;
+    align-items: center;
+    font-size: 4rem;
+    gap: 3rem;
+  }
+}

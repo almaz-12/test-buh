@@ -17,5 +17,9 @@
     @media (max-width: 1200px) {
       @content
     }
+  } @else {
+    @media (max-width: $breakpoint) {
+      @content
+    }
   }
 }

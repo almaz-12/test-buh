@@ -1,0 +1,28 @@
+.form-group {
+  position: relative;
+  &__label {
+    display: block;
+    font-weight: 400;
+    font-size: 1.6rem;
+    line-height: 2.2rem;
+  }
+
+  &__message {
+    position: absolute;
+    left: 0;
+    bottom: -2rem;
+    visibility:hidden;
+    opacity: 0;
+    transition: opacity .3s;
+  }
+
+  &.error &__message{
+      visibility: visible;
+      opacity: 1;
+      color: #ff4848;
+  }  
+
+  &_full {
+    grid-column: 1 / -1;
+  }
+}

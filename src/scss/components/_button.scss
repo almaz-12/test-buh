@@ -1,0 +1,40 @@
+.button {
+  position: relative;
+  z-index: 1;
+  display: inline-block;
+  min-width: 27rem;
+  padding: 1.8rem 4.2rem;
+  background: $color-button;
+  font-size: 1.8rem;
+  line-height: 2.5rem;
+  text-align: center;
+  color: $color-main;
+  font-family: $font-main;
+  overflow: hidden;
+  transition: color .3s .2s, background .7s ease-out;
+
+  &:before {
+    display: block;
+    position: absolute;
+    z-index: -1;
+    content: "";
+    border-radius: 50%;
+    background:$color-main;
+    left: -5rem;
+    top: 100%;
+    width: 10rem;
+    height: 10rem;
+    transition: all .7s ease-in-out;
+    transform-origin: left;
+  }
+
+  &:hover {
+    background: $color-main;
+    color: $color-button;
+    transition: color .3s .2s,background .3s .6s;
+  }
+
+  &:hover:before {
+    transform: translate(1rem,-5rem) scale(4.5);
+  }
+}

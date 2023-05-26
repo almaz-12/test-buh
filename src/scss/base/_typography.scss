@@ -1,0 +1,19 @@
+.title {
+  margin: 0;
+  font-family: $font-secondary;
+  font-weight: 700;
+  font-size: 4.8rem;
+  color: $color-main;
+
+  &_extra-bold {
+    font-weight: 900;
+  }
+}
+
+.text {
+  margin: 0;
+  font-weight: 300;
+  font-size: 1.8rem;
+  line-height: 2.5rem;
+  color: $color-main;
+}

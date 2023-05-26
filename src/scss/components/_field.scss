@@ -1,0 +1,26 @@
+.field {
+  width: 100%;
+  padding: 1.5rem 0 1.5rem;
+  background: none;
+  border: 0;
+  border-bottom: 1px solid $color-main;
+  color: #bdbdbd;
+  resize: none;
+  transition: all .3s;
+
+  &_textarea {
+    height: 120px;
+  }
+}
+
+.error .field {
+  border-bottom: 1px solid $color-error;
+}
+
+::placeholder {
+  font-family: $font-main;
+  font-weight: 300;
+  font-size: 2.1rem;
+  line-height: 2.9rem;
+  color: #bdbdbd;
+}
